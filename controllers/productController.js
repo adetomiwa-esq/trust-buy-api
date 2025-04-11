@@ -63,3 +63,29 @@ export const deleteProduct = async (req, res, next) => {
     console.log(error);
   }
 };
+
+// desc             edit product
+// Endpoint         /api/product/:slug
+export const editProduct = async (req, res, next) => {
+  try {
+    const product = await Product.findOne({ _id: req.params.id });
+
+    if (!product) {
+      const err = new Error(
+        `Product with id - ${req.params.id} cannot be found`
+      );
+      err.status = 404;
+      return next(err);
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    console.log(error);
+  }
+};
