@@ -4,6 +4,7 @@ import router from "./routes/userRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 import connectDB from "./config/db.js";
 import productRouter from "./routes/productRoutes.js";
+import cartRouter from "./routes/cartRoutes.js";
 
 configDotenv();
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/user", router);
 app.use("/api/product", productRouter);
+app.use("/api/cart", cartRouter);
 
 app.use(errorHandler);
 
