@@ -14,10 +14,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(errorHandler);
-
 app.use("/api/user", router);
 app.use("/api/product", productRouter);
+
+app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {
   console.log("listening on port 5000");
